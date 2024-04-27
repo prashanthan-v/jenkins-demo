@@ -29,5 +29,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn test
+    - name: Build and push Docker image
+      run: mvn clean compile jib:build
+      env:
+           REGISTRY_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+           REGISTRY_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 
